@@ -1,28 +1,40 @@
 let answer = document.getElementById('answer');
 let attempt = document.getElementById('attempt');
-var i = 0;
+let guessNumber = document.getElementById('guessNumber');
 
 function guess() {
     let input = document.getElementById('user-guess');
-    if(answer === '' && attempt === '') {
-        setHiddenFields(0, 9999);
+    if(answer.value === '0' && attempt.value === '0') {
+      setHiddenFields(0, 9999);
     }
-    if(validateInput(input.value) === false) {
-      return;
+    if(validateInput(input.value)) {
+      newNum = Number(attempt.value) + 1;
+      attempt.value = newNum.toString();
     } else {
-      i++
-      attempt.value = i;
+      return;
     }
+    if(input.value === answer.value) {
+      setMessage("YOU WIN!!!!!!");
+      answer.value = 0;
+      attempt.value = 0;
+    } else if (attempt.value === '5') {
+      setMessage("YOU LOSE!!!!!!!!");
+      answer.value = 0;
+      attempt.value = 0;
+    }
+    console.log(guessNumber);
+    guessNumber.innerHTML = attempt.value;
+    console.log(attempt);
+    console.log(answer);
 }
 
 function setHiddenFields(min, max) {
-  let answer = Math.floor(Math.random() * (max - min) + min);
-  let attempt = 0;
-  answer = answer.toString();
-  while(answer.length === 3) {
-    answer = "0" + answer;
+  attempt.value = 0;
+  answer.value = Math.floor(Math.random() * (max - min) + min);
+  answer.value = answer.value.toString();
+  while(answer.value.length === 3) {
+    answer.value = "0" + answer.value;
   }
-  console.log(answer);
 }
 
 function setMessage(message) {

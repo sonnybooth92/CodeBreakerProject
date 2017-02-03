@@ -20,7 +20,7 @@
 
         <div id="guessing-div" class="row form-inline">
           <input type="hidden" id="attempt" value="0"/>
-          <input type="hidden" id="answer"/>
+          <input type="hidden" id="answer" value="0"/>
           <input id="user-guess" class="form-control" type="number" />
           <button class="btn btn-primary" onclick="guess()">Submit Guess</button>
         </div>
@@ -35,7 +35,10 @@
 
         <div class="row" id="results">
           <div class="row">
-            <strong class="col-md-6">Guess</strong>
+            <strong class="col-md-6 guessNumber">
+            <span>Guess:</span>
+            <span id="guessNumber"></span>
+          </strong>
             <strong class="col-md-6">Result</strong>
           </div>
         </div>
